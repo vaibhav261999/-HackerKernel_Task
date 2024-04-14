@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>All User</title>
+    <style>
+         .text-success {
+      width: 100%;
+      height: 40px;
+      text-align: center;
+      background-color: rgb(150, 196, 150);
+      font-size: 25px;
+      transition: .6s ease-in;
+    }
+    </style>
+</head>
+
+<body>
+    {% if msg %}
+      <div class="text-success">{{msg}}</div>
+      {% endif %}
+
+    {% if user_data %}
+    <div class="row justify-content-center">
+        <h1 class="text-center">All User</h1>
+        <br><br>
+        <div class="col-sm-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobile</th>
+                    </tr>
+                </thead>
+                {% for i in user_data %}
+                <tbody>
+                    <tr>
+                        <td scope="row">{{ i.id }}</td>
+                        <td>{{ i.Name }}</td>
+                        <td>{{ i.Email }}</td>
+                        <td>{{ i.Mobile }}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+
+            <a class="btn btn-primary" href="{% url 'Excel' pk='user' %}">Export to Excel</a>
+        </div>
+
+    </div>
+
+
+
+    {% else %}
+    <div class="row justify-content-center">
+        <h1 class="text-center">All Task</h1>
+        <br><br>
+        <div class="col-sm-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobile</th>
+                </thead>
+                {% for i in task_data %}
+                <tbody>
+                    <tr>
+                        <td scope="row">{{ i.id }}</td>
+                        <td>{{ i.Detail }}</td>
+                        <td>{{ i.Task_type }}</td>
+                        <td>{{ i.Task }}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+            <a class="btn btn-primary" href="{% url 'Excel' pk='task' %}">Export to Excel</a>
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
